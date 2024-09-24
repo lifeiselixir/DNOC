@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Cancellation</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0; /* Set margin to 0 to avoid scrollbars */
+            display: flex; /* Use flexbox to layout the left panel and content */
+            position: relative;
+            height: 932px; /* Set body height */
+        }
+        .left-panel {
+            width: 300px; /* Width of the left panel */
+            background: linear-gradient(180deg, #002141 0%, #477998 100%);
+            color: white; /* Text color */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            flex: 1; /* Allow the container to take the remaining space */
+            margin: 20px; /* Add margin for the main container */
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 100%; /* Set height to 100% of the parent */
+            background: rgba(217, 217, 217, 0.31);
+            background: color(display-p3 0.851 0.851 0.851 / 0.31);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .warning {
+            background-color: #ffeeba;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .dependent-fields {
+            display: none; /* Hide dependent fields by default */
+        }
+        /* Logo styling */
+        .logo {
+            width: 100px; /* Adjust as needed */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        /* Policy-specific styles */
+        .group-61 {
+            position: absolute;
+            width: 1340.66px;
+            height: 52px;
+            left: 0px;
+            top: 0px;
+        }
+        .rectangle-110 {
+            position: absolute;
+            width: 1317px;
+            height: 52px;
+            left: 0px;
+            top: 0px;
+            background: #FFFFFF;
+            background: color(display-p3 1.000 1.000 1.000);
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel">
+        <img src="C:\Users\mathivathani_k\Downloads\logo_active.jpg" alt="Logo" class="logo"> <!-- Replace with your logo URL -->
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="#" style="color: white;">Home</a></li>
+            <li><a href="#" style="color: white;">Policy</a>
+                <ul>
+                    <li><a href="#" style="color: white;">Policy Details</a></li>
+                    <li><a href="#" style="color: white;">Insured</a></li>
+                    <li><a href="#" style="color: white;">Risk/Coverage</a></li>
+                    <li><a href="#" style="color: white;">Product Selection</a></li>
+                    <li><a href="#" style="color: white;">Submission Summary</a></li>
+                    <li><a href="#" style="color: white;">Schedule of Forms</a></li>
+                    <li><a href="#" style="color: white;">Subjectivities</a></li>
+                    <li><a href="#" style="color: white;">Pending Cancellations</a></li>
+                </ul>
+            </li>
+            <li><a href="#" style="color: white;">Reports</a></li>
+            <li><a href="#" style="color: white;">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Pending Cancellation Form</h2>
+        <!-- Warning message when policy is marked for cancellation -->
+        <div class="warning" id="warningMessage" style="display: none;">
+            The policy is pending cancellation.
+        </div>
+
+        <!-- Pending Cancellation Form -->
+        <form id="pendingCancellationForm">
+            <!-- Question: Do you want to flag this policy? -->
+            <div class="form-group">
+                <label for="flagPendingCancellation">Do you want to flag this policy for Pending Cancellation?</label>
+                <select id="flagPendingCancellation" required>
+                    <option value="">Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <!-- Dependent fields that show up if Yes is selected -->
+            <div id="dependentFields" class="dependent-fields">
+                <!-- Requested By dropdown -->
+                <div class="form-group">
+                    <label for="requestedBy">Requested By</label>
+                    <select id="requestedBy" required>
+                        <option value="">Select</option>
+                        <option value="Underwriting Team">Underwriting Team</option>
+                        <option value="Finance Team">Finance Team</option>
+                        <option value="Inspection Team">Inspection Team</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <!-- Reason for Pending Cancellation -->
+                <div class="form-group">
+                    <label for="reason">Reason for Pending Cancellation</label>
+                    <select id="reason" multiple required>
+                        <option value="Non-Payment">Non-Payment</option>
+                        <option value="Underwriting Reasons">Underwriting Reasons</option>
+                        <option value="Inspection Reasons">Inspection Reasons</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <!-- Date Pending Cancellation Processed -->
+                <div class="form-group">
+                    <label for="dateProcessed">Date Pending Cancellation Processed</label>
+                    <input type="date" id="dateProcessed" required>
+                </div>
+
+                <!-- DNOC Notice to be sent on or before -->
+                <div class="form-group">
+                    <label for="dnocDate">DNOC Notice to be sent on or before</label>
+                    <input type="date" id="dnocDate" required>
+                </div>
+
+                <!-- DNOC Notice Sent (Y/N) -->
+                <div class="form-group">
+                    <label for="dnocSent">DNOC Notice Sent?</label>
+                    <select id="dnocSent" required>
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                </div>
+
+                <!-- Cancel Policy By Date -->
+                <div class="form-group">
+                    <label for="cancelDate">Cancel Policy By Date</label>
+                    <input type="date" id="cancelDate" required>
+                </div>
+
+                <!-- Upload DNOC Notice -->
+                <div class="form-group">
+                    <label for="uploadFile">Upload DNOC Notice</label>
+                    <input type="file" id="uploadFile" accept=".pdf">
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn">Submit Pending Cancellation</button>
+        </form>
+    </div>
+
+    <script>
+        // Logic for showing warning message and dependent fields
+        const flagSelect = document.getElementById('flagPendingCancellation');
+        const warningMessage = document.getElementById('warningMessage');
+        const dependentFields = document.getElementById('dependentFields');
+
+        flagSelect.addEventListener('change', function() {
+            if (flagSelect.value === 'yes') {
+                warningMessage.style.display = 'block';
+                dependentFields.style.display = 'block'; // Show dependent fields
+            } else {
+                warningMessage.style.display = 'none';
+                dependentFields.style.display = 'none'; // Hide dependent fields
+            }
+        });
+
+        // Submission logic (add real logic to handle API calls)
+        document.getElementById('pendingCancellationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pending Cancellation submitted successfully!');
+        });
+    </script>
+</body>
+</html>
