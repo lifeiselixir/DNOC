@@ -9,32 +9,48 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            margin: 0; /* Set margin to 0 to avoid scrollbars */
-            display: flex; /* Use flexbox to layout the left panel and content */
+            margin: 0;
+            display: flex;
             position: relative;
-            height: 932px; /* Set body height */
+            height: 932px;
         }
         .left-panel {
-            width: 300px; /* Width of the left panel */
+            width: 300px;
             background: linear-gradient(180deg, #002141 0%, #477998 100%);
-            color: white; /* Text color */
+            color: white;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
         .container {
-            flex: 1; /* Allow the container to take the remaining space */
-            margin: 20px; /* Add margin for the main container */
-            background: #fff;
-            padding: 20px;
+            flex: 1;
+            margin: 20px;
+            background: rgba(217, 217, 217, 0.31);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
-            height: 100%; /* Set height to 100% of the parent */
-            background: rgba(217, 217, 217, 0.31);
-            background: color(display-p3 0.851 0.851 0.851 / 0.31);
+            height: 100%;
+            padding: 20px;
         }
         h2 {
             text-align: center;
+            color: #333;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 22px;
+        }
+        .policy-details-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .policy-details {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 22px;
             color: #333;
         }
         label {
@@ -48,6 +64,7 @@
             margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 16px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -55,16 +72,17 @@
         .btn {
             display: block;
             width: 100%;
-            background-color: #28a745;
+            background: linear-gradient(90deg, #002141 0%, #477998 100%);
             color: white;
             padding: 10px;
             font-size: 16px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background 0.3s;
         }
         .btn:hover {
-            background-color: #218838;
+            background: linear-gradient(90deg, #001c34 0%, #3d6e8a 100%);
         }
         .warning {
             background-color: #ffeeba;
@@ -75,35 +93,17 @@
             border: 1px solid #ffeeba;
         }
         .dependent-fields {
-            display: none; /* Hide dependent fields by default */
+            display: none;
         }
-        /* Logo styling */
         .logo {
-            width: 100px; /* Adjust as needed */
-            margin-bottom: 20px; /* Space below the logo */
-        }
-        /* Policy-specific styles */
-        .group-61 {
-            position: absolute;
-            width: 1340.66px;
-            height: 52px;
-            left: 0px;
-            top: 0px;
-        }
-        .rectangle-110 {
-            position: absolute;
-            width: 1317px;
-            height: 52px;
-            left: 0px;
-            top: 0px;
-            background: #FFFFFF;
-            background: color(display-p3 1.000 1.000 1.000);
+            width: 100px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="left-panel">
-        <img src="logo_active.jpg" alt="Logo" class="logo"> <!-- Replace with your logo URL -->
+        <img src="logo_active.jpg" alt="Logo" class="logo">
         <h2>Navigation</h2>
         <ul>
             <li><a href="#" style="color: white;">Home</a></li>
@@ -125,15 +125,24 @@
     </div>
 
     <div class="container">
+        <!-- New Policy Details Panel -->
+        <div class="policy-details-box">
+            <div class="policy-details">
+                <div>Policy Number: 123456</div>
+                <div>Premium: $500</div>
+            </div>
+            <div class="policy-details">
+                <div>Account Name: John Doe</div>
+            </div>
+        </div>
+        
         <h2>Pending Cancellation Form</h2>
-        <!-- Warning message when policy is marked for cancellation -->
+
         <div class="warning" id="warningMessage" style="display: none;">
             The policy is pending cancellation.
         </div>
 
-        <!-- Pending Cancellation Form -->
         <form id="pendingCancellationForm">
-            <!-- Question: Do you want to flag this policy? -->
             <div class="form-group">
                 <label for="flagPendingCancellation">Do you want to flag this policy for Pending Cancellation?</label>
                 <select id="flagPendingCancellation" required>
@@ -143,9 +152,7 @@
                 </select>
             </div>
 
-            <!-- Dependent fields that show up if Yes is selected -->
             <div id="dependentFields" class="dependent-fields">
-                <!-- Requested By dropdown -->
                 <div class="form-group">
                     <label for="requestedBy">Requested By</label>
                     <select id="requestedBy" required>
@@ -157,7 +164,6 @@
                     </select>
                 </div>
 
-                <!-- Reason for Pending Cancellation -->
                 <div class="form-group">
                     <label for="reason">Reason for Pending Cancellation</label>
                     <select id="reason" multiple required>
@@ -168,19 +174,16 @@
                     </select>
                 </div>
 
-                <!-- Date Pending Cancellation Processed -->
                 <div class="form-group">
                     <label for="dateProcessed">Date Pending Cancellation Processed</label>
                     <input type="date" id="dateProcessed" required>
                 </div>
 
-                <!-- DNOC Notice to be sent on or before -->
                 <div class="form-group">
                     <label for="dnocDate">DNOC Notice to be sent on or before</label>
                     <input type="date" id="dnocDate" required>
                 </div>
 
-                <!-- DNOC Notice Sent (Y/N) -->
                 <div class="form-group">
                     <label for="dnocSent">DNOC Notice Sent?</label>
                     <select id="dnocSent" required>
@@ -189,26 +192,22 @@
                     </select>
                 </div>
 
-                <!-- Cancel Policy By Date -->
                 <div class="form-group">
                     <label for="cancelDate">Cancel Policy By Date</label>
                     <input type="date" id="cancelDate" required>
                 </div>
 
-                <!-- Upload DNOC Notice -->
                 <div class="form-group">
                     <label for="uploadFile">Upload DNOC Notice</label>
                     <input type="file" id="uploadFile" accept=".pdf">
                 </div>
             </div>
 
-            <!-- Submit button -->
             <button type="submit" class="btn">Submit Pending Cancellation</button>
         </form>
     </div>
 
     <script>
-        // Logic for showing warning message and dependent fields
         const flagSelect = document.getElementById('flagPendingCancellation');
         const warningMessage = document.getElementById('warningMessage');
         const dependentFields = document.getElementById('dependentFields');
@@ -216,14 +215,13 @@
         flagSelect.addEventListener('change', function() {
             if (flagSelect.value === 'yes') {
                 warningMessage.style.display = 'block';
-                dependentFields.style.display = 'block'; // Show dependent fields
+                dependentFields.style.display = 'block';
             } else {
                 warningMessage.style.display = 'none';
-                dependentFields.style.display = 'none'; // Hide dependent fields
+                dependentFields.style.display = 'none';
             }
         });
 
-        // Submission logic (add real logic to handle API calls)
         document.getElementById('pendingCancellationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Pending Cancellation submitted successfully!');
